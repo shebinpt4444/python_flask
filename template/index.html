@@ -1,0 +1,48 @@
+{% extends 'basic.html' %}
+
+{% block head %}
+<title>Task Master</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+ {% endblock %}
+
+ {% block body %}
+
+ <div class="container" style="background: black; color: white;">
+   <h1 style="text-align: center;">Task Master</h1>
+
+   <table class="table" border="1px">
+      <thead>
+      <tr>
+         <th>Task</th>
+         <th>Added</th>
+         <th>Actions</th>
+      </tr>
+   </thead>
+{% for task in tasks %}
+      <tbody>
+      <tr>
+         <td>{{ task.content }}</td>
+         <td>{{ task.date_created.date() }}</td>
+         <td>
+            <a href="/delete/{{task.id}}">Delete</a>
+            <br>
+            <a href="/update/{{task.id}}">Update</a>
+         </td>
+      </tr>
+   </tbody>
+      {% endfor %}
+   </table>
+   <form action="/" method="POST" style="color: black; text-align: center;">
+   <input type="text" name="content" id="content">
+   <input type="submit" value="Add Task">
+   </form>
+
+ </div>
+
+ 
+    {% endblock %}
